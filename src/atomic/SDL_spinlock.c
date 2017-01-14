@@ -77,7 +77,12 @@ SDL_AtomicTryLock(SDL_SpinLock *lock)
         "ldrex %0, [%2]\nteq   %0, #0\nstrexeq %0, %1, [%2]"
         : "=&r" (result) : "r" (1), "r" (lock) : "cc", "memory");
     return (result == 0);
-
+#elif defined(__bexkat1__)
+  int result;
+  __asm__ __volatile__(
+     "cli; ld.l %0, (%2); st.l %1, (%2); sti\n"
+      : "=r" (result) : "r" (1), "r" (lock) : "memory");
+  return (result == 0);
 #elif defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
     int result;
     __asm__ __volatile__(
@@ -96,7 +101,6 @@ SDL_AtomicTryLock(SDL_SpinLock *lock)
 #elif defined(__SOLARIS__) && !defined(_LP64)
     /* Used for Solaris with non-gcc compilers. */
     return (SDL_bool) ((int) atomic_cas_32((volatile uint32_t*)lock, 0, 1) == 0);
-
 #else
 #error Please implement for your platform.
     return SDL_FALSE;

@@ -87,7 +87,7 @@ static double
     pio2_3t = 8.47842766036889956997e-32;       /* 0x397B839A, 0x252049C1 */
 
 #ifdef __STDC__
-int32_t attribute_hidden
+u_int32_t attribute_hidden
 __ieee754_rem_pio2(double x, double *y)
 #else
 int32_t attribute_hidden

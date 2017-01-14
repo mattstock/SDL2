@@ -19,13 +19,13 @@
 
 /* #include <endian.h> */
 #include "SDL_endian.h"
-/* #include <sys/types.h> */
+#include <sys/types.h>
 
 #define attribute_hidden
 #define libm_hidden_proto(x)
 #define libm_hidden_def(x)
 
-#ifndef __HAIKU__ /* already defined in a system header. */
+#if !defined(__HAIKU__) && !defined(__bexkat1__) /* already defined in a system header. */
 typedef unsigned int u_int32_t;
 #endif
 
@@ -201,7 +201,7 @@ __ieee754_sqrt(double)
      extern double __ieee754_jn(int, double) attribute_hidden;
      extern double __ieee754_yn(int, double) attribute_hidden;
      extern double __ieee754_remainder(double, double) attribute_hidden;
-     extern int __ieee754_rem_pio2(double, double *) attribute_hidden;
+     extern u_int32_t __ieee754_rem_pio2(double, double *) attribute_hidden;
 #if defined(_SCALB_INT)
      extern double __ieee754_scalb(double, int) attribute_hidden;
 #else
@@ -215,7 +215,7 @@ __ieee754_sqrt(double)
      extern double __kernel_sin(double, double, int) attribute_hidden;
      extern double __kernel_cos(double, double) attribute_hidden;
      extern double __kernel_tan(double, double, int) attribute_hidden;
-     extern int __kernel_rem_pio2(double *, double *, int, int, int,
-                                  const int *) attribute_hidden;
+     extern u_int32_t __kernel_rem_pio2(double *, double *, int, int, int,
+                                  const int32_t *) attribute_hidden;
 
 #endif /* _MATH_PRIVATE_H_ */

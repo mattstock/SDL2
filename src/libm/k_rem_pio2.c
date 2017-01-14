@@ -168,7 +168,7 @@ static double
     twon24 = 5.96046447753906250000e-08;        /* 0x3E700000, 0x00000000 */
 
 #ifdef __STDC__
-int attribute_hidden
+u_int32_t attribute_hidden
 __kernel_rem_pio2(double *x, double *y, int e0, int nx, int prec,
                   const int32_t * ipio2)
 #else

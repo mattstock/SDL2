@@ -260,6 +260,7 @@ case $basic_machine in
 	| alpha64 | alpha64ev[4-8] | alpha64ev56 | alpha64ev6[78] | alpha64pca5[67] \
 	| am33_2.0 \
 	| arc | arm | arm[bl]e | arme[lb] | armv[2345] | armv[345][lb] | avr | avr32 \
+	| bexkat1 \
         | be32 | be64 \
 	| bfin \
 	| c4x | clipper \
@@ -324,6 +325,9 @@ case $basic_machine in
 		;;
 	c55x)
 		basic_machine=tic55x-unknown
+		;;
+	bexkat)
+		basic_machine=bexkat1-elf
 		;;
 	c6x)
 		basic_machine=tic6x-unknown
