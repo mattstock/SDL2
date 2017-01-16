@@ -20713,6 +20713,18 @@ $as_echo "#define SDL_VIDEO_DRIVER_HAIKU 1" >>confdefs.h
     fi
 }
 
+CheckBexkat()
+{
+    if test x$enable_video = xyes; then
+
+$as_echo "#define SDL_VIDEO_DRIVER_BEXKAT1 1" >>confdefs.h
+
+        SOURCES="$SOURCES $srcdir/src/video/bexkat1/*.c"
+        have_video=yes
+        SUMMARY_video="${SUMMARY_video} bexkat1"
+    fi
+}
+
 CheckCOCOA()
 {
     # Check whether --enable-video-cocoa was given.
@@ -23699,6 +23711,7 @@ $as_echo "#define SDL_TIMER_UNIX 1" >>confdefs.h
     *bexkat1*)
 	ARCH=bexkat1
 	CheckNativeClient
+	CheckBexkat
 	CheckDummyAudio
 	CheckDummyVideo
 	CheckInputEvents

@@ -1795,6 +1795,17 @@ CheckHaikuVideo()
     fi
 }
 
+dnl Set up build for Bexkat1
+CheckBexkat()
+{
+    if test x$enable_video = xyes; then
+        AC_DEFINE(SDL_VIDEO_DRIVER_BEXKAT1, 1, [ ])
+        SOURCES="$SOURCES $srcdir/src/video/bexkat1/*.c"
+        have_video=yes
+        SUMMARY_video="${SUMMARY_video} bexkat1"
+    fi
+}
+
 dnl Set up the Cocoa video driver for Mac OS X (but not Darwin)
 CheckCOCOA()
 {
@@ -3414,6 +3425,7 @@ AC_HELP_STRING([--enable-render-d3d], [enable the Direct3D render driver [[defau
     *bexkat1*)
 	ARCH=bexkat1
 	CheckNativeClient
+	CheckBexkat
 	CheckDummyAudio
 	CheckDummyVideo
 	CheckInputEvents
